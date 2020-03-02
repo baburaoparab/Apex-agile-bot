@@ -1,0 +1,15 @@
+{
+  "port": 3000,
+  "dronePort" : 5000,
+  "droneHost" : "localhost",
+  "videoFeedPort" : 5001,
+  "db": {
+      "uri": "mongodb://127.0.0.1:27017/hawk-eyes-db"
+  },
+  "dev_endpoints": {
+    "swagger": true
+  },
+  "jwt": {
+    "secret": "jkdfhjkh37897#&fhjkjh"
+  }
+} 

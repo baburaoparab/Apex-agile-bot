@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "build",
+    "sourceMap": true,
+    "types": [
+      "bluebird",
+      "body-parser",
+      "config",
+      "express",
+      "js-yaml",
+      "lodash",
+      "node"
+    ]
+  },
+  "files": [
+    "./node_modules/@types/mocha/index.d.ts",
+    "./node_modules/@types/node/index.d.ts"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.key"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

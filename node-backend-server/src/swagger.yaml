@@ -1,0 +1,150 @@
+swagger: '2.0'
+info:
+  title: Hawk-Eyes
+  description: |
+    Hawk-Eyes admin services
+  version: 0.0.1
+basePath: /hawkeyes/v1
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /administrative/setCoordinates:
+    post:
+      operationId: admin-service_setCoordinatesService
+      summary: sets coords data
+      description: sets coords data
+      tags:
+      - admin
+      parameters:
+        # - $ref: '#/parameters/authorization'
+        - name: payload
+          in: body
+          description: coords data payload
+          required: true
+          schema:
+            $ref: '#/definitions/bulkLocationDataModel'
+      responses:
+        '200':
+          $ref: '#/responses/AdminResponse'
+        '400':
+          $ref: '#/responses/BadRequest'
+        '404':
+          $ref: '#/responses/NoResult'
+    get:
+      operationId: admin-service_getCoordinatesService
+      summary: gets coords data
+      description: gets coords data
+      tags:
+      - admin
+      responses:
+        '200':
+          $ref: '#/responses/AdminResponse'
+        '400':
+          $ref: '#/responses/BadRequest'
+        '404':
+          $ref: '#/responses/NoResult'     
+parameters:
+  authorization:
+    name: authorization
+    in: header
+    type: string
+    description: The authorization bearer token
+    required: true
+  someSampleParam:
+    name: someSampleParam
+    in: query
+    type: string
+    description: someSampleParam 
+    required: true
+responses:
+  AdminResponse:
+    description: response to valid admin call
+    schema: 
+      $ref: "#/definitions/AnyModel"
+  BadRequest:
+    description: bad request
+    schema:
+      $ref: '#/definitions/Error'
+  NoResult:
+    description: result not found
+    schema:
+      $ref: '#/definitions/Error'
+  UnauthorizedError:
+    description: user is not an authorized to access service
+    schema:
+      $ref: '#/definitions/Error'        
+definitions:
+  bulkLocationDataModel:
+    type: array
+    items:
+      $ref: '#/definitions/locationDataModel'
+  locationDataModel:
+    type: object    
+    required:
+      - droneId
+      - droneLocation
+    properties:
+        droneId:
+          type: string
+          description: droneId
+        droneLocation:
+          type: object
+          required:
+            - velocity  
+            - coordinates
+          properties:
+            velocity:
+              type: number
+              description: velocity
+            coordinates:
+              type: object
+              required:
+                - x  
+                - y
+                - z
+              properties:
+                x:
+                  type: number
+                  description: x-coord
+                y:
+                  type: number
+                  description: y-coord
+                z:
+                  type: number
+                  description: z-coord  
+        imageData:
+          type: string
+          description: imageData
+  AnyModel:
+    type: object
+  AnyArrayModel:
+    type: array
+    items:
+      $ref: "#/definitions/AnyModel"         
+  AdminModelParam:
+    type: object
+    required: 
+      - verb
+      - path
+    properties:
+      verb:
+        type: string
+        enum: ['GET', 'POST', 'PUT' , 'DELETE', 'PATCH', 'HEAD']
+        description: HTTP Verb ('GET', 'POST', 'PUT' , 'DELETE', 'PATCH', 'HEAD')
+      path:
+        type: string
+        description: Path part of URL (e.g. /my_path in URL https://myserver.com/my_path)
+      payload:
+        $ref: '#/definitions/AnyModel'
+      payloads:
+        $ref: '#/definitions/AnyArrayModel'
+  Error:
+    type: object
+    additionalProperties: false
+    properties:
+      message:
+        type: string
+      details:
+        type: object
