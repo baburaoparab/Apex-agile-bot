@@ -1,0 +1,10 @@
+<div style="padding: 16px;">
+    <h1>Home</h1>
+    <form>
+        <textarea rows="10" cols="30" (change)="textAreaChange($event)"> </textarea>
+    </form>
+    <button (click)="speak()">Speak</button>
+    <button (click)="speech.pause()">Pause</button>
+    <button (click)="speech.resume()">Resume</button>
+    <button (click)="speech.cancel()">Cancel</button>
+</div>
