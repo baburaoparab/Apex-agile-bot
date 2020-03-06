@@ -54,25 +54,10 @@ if (isNaN(port)) {
 
 let swaggerPath = path.resolve(__dirname, './swagger.yaml');
 let controllerPath = path.resolve(__dirname, './actions');
-let rootPath = '/hawkeyes/v1';
-const droneObj= {
-  id: "A0123G",
-  name: 'Drone AR',
-  battery: 78,
-  locationName: 'Sector 1B',
-  speed: 17,
-  signalStrength: 'Good',
-  timeLeft: 3,
-  flightStatus: 'flying',
-  upTime: 50,
-  altitude: 25,
-  position: {
-      latitude: 0,
-      longitude: 0,
-  }
- };
+let rootPath = '/apexLegends/v1';
 
 
+/* 
 io.on('connection', (socket) => {
   console.log("Connected to Socket!!"+ socket.id);
   // Receiving Todos from client
@@ -86,43 +71,18 @@ io.on('connection', (socket) => {
     // mainController.threatDetected(data,socket);
   });
 
-  io.emit("droneUpdate", { type: "new-message",  'droneObj' :  droneObj });
+  io.emit("droneUpdate", { type: "new-message",  'droneObj' : {}  });
+});
+ */
+
+app.get("/",function(req,res){
+  res.send("testing");
 });
 
-app.use("/activateThreat",function(req,res){
-  mainController.threatDetected(true,undefined);
-  res.send();
+app.post("/sendMessage",function(req,res){
+    mainController.sendMessage(req,res);
 });
 
-app.use("/start",function(req,res){
-  mainController.intiateSocketFlow();
-  res.send()
-})
-app.use("/takeoff",function(req,res){
-  console.log("in take off")
-  
-  mainController.drone_takeOff(function(resp){
-    res.send();
-  });
-})
-
-app.use("/resetDronePosition",function(req,res){
-    
-  mainController.resetDronePosition(function(response){
-    console.log(response)
-    res.send();
-  })
-});
-
-app.use("/initiateDroneMovement",function(req,res){
-  mainController.initiateDroneMovement(io);
-  res.send()
-})
-
-app.use("/getVideoFeed",function(req,res){
-  mainController.getVideoFeedData();
-  res.send();
-})
 
 try {
   initExpress();

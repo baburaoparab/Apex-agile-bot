@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@slack/events-api": "^2.3.2",
+    "@slack/interactive-messages": "^1.5.0",
+    "@slack/web-api": "^5.8.0",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.3",
     "config": "^1.21.0",
@@ -25,6 +28,7 @@
     "node-fetch": "^2.3.0",
     "nodemon": "1.11.0",
     "path": "^0.12.7",
+    "slack": "^11.0.2",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
