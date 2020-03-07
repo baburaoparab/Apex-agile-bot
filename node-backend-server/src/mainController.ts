@@ -8,7 +8,7 @@ const Bluebird = require('bluebird');
 fetch = Bluebird.promisifyAll(fetch);
 var http = require('http');
 const { WebClient } = require('@slack/web-api');
-const token = "xoxp-962542825458-977193460199-977244683719-1eac845381f080e3beb700fca1ed0a40"
+const token = ""
 
 const web = new WebClient(token);
 const SLACK_SIGNING_SECRET = "ebb75768daafbe658fe008af9575cfed"
