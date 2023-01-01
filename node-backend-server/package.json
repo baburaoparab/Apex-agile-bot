@@ -16,7 +16,7 @@
     "@slack/web-api": "^5.8.0",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.3",
-    "config": "^1.21.0",
+    "config": "^3.3.8",
     "cors": "^2.8.5",
     "express": "4.15.3",
     "fetch": "^1.1.0",
